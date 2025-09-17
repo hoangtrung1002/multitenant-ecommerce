@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
         </div>
         <div>
           <Progress value={33} />
+        </div>
+        <div>
+          <Textarea />
         </div>
       </div>
     </div>
