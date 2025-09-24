@@ -5,6 +5,7 @@ import Navbar from "@/components/shared/navbar";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
 import React from "react";
+import { CustomCategory } from "./types";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
   const payload = await getPayload({
@@ -15,9 +16,10 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
     depth: 1, // populated subcategories, subcategories[0] will be a type of "Category"
     collection: "categories",
     where: { parent: { exists: false } },
+    sort: "name",
   });
 
-  const formattedData = data.docs.map((doc) => ({
+  const formattedData: CustomCategory[] = data.docs.map((doc) => ({
     ...doc,
     subcategories: (doc.subcategories?.docs ?? []).map((doc) => ({
       // Because of "depth: 1" we are confident "doc" will be a type of "Category"

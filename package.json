@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "generate:type": "payload generate:types",
-    "db:fresh": "payload migrate:fresh"
+    "db:fresh": "payload migrate:fresh",
+    "db:seed": "npx payload run src/seed.ts"
   },
   "type": "module",
   "dependencies": {
