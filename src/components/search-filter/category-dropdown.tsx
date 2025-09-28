@@ -4,7 +4,7 @@ import { CategoriesGetManyOutput } from "@/modules/categories/types";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { Button } from "../ui/button";
-import useDropdownPosition from "./hooks/use-dropdown-position";
+import useDropdownPosition from "../hooks/use-dropdown-position";
 import SubcategoryMenu from "./subcategory-menu";
 
 interface Props {

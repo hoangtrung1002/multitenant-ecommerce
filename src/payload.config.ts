@@ -22,6 +22,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Categories],
+  cookiePrefix: "marlboro", // for custom cookies if want unique cookie
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

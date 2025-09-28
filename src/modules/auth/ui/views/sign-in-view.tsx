@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useTRPC } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
@@ -30,13 +30,15 @@ const poppins = Poppins({
 
 const SignInView = () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const trpc = useTRPC();
   const login = useMutation(
     trpc.auth.login.mutationOptions({
       onError: (error) => {
         toast.error(error.message);
       },
-      onSuccess: () => {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(trpc.auth.session.queryFilter());
         router.push("/");
       },
     })
