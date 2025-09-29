@@ -1,11 +1,11 @@
 "use client";
+import useTRPCSession from "@/app/hooks/use-trpc-session";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { BookmarkCheckIcon, ListFilterIcon, SearchIcon } from "lucide-react";
-import { useState } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import CategoriesSidebar from "./categories-sidebar";
-import useTRPCSession from "../hooks/use-trpc-session";
 import Link from "next/link";
+import { useState } from "react";
+import CategoriesSidebar from "./categories-sidebar";
 
 interface Props {
   disabled?: boolean;

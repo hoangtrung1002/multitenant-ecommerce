@@ -1,8 +1,10 @@
-import SearchFilter, { SearchFilterSkeleton } from "@/components/search-filter";
-import Footer from "@/components/shared/footer";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import Navbar from "@/components/shared/navbar";
+import SearchFilter, {
+  SearchFilterSkeleton,
+} from "@/modules/home/ui/components/search-filter";
+import Footer from "@/modules/home/ui/components/footer";
+import Navbar from "@/modules/home/ui/components/navbar";
 import { getQueryClient, trpc } from "@/trpc/server";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import React, { Suspense } from "react";
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
