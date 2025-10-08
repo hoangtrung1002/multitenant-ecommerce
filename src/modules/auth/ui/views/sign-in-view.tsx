@@ -133,9 +133,7 @@ const SignInView = () => {
           backgroundPosition: "center",
         }}
         className="h-screen w-full lg:col-span-2 hidden lg:block"
-      >
-        Background column
-      </div>
+      ></div>
     </div>
   );
 };
