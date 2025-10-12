@@ -15,6 +15,7 @@ import { Product } from "./collections/Product";
 import { Tags } from "./collections/Tags";
 import { Tenants } from "./collections/Tenants";
 import { Config } from "./payload-types";
+import { Orders } from "./collections/Orders";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -26,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Product, Tags, Tenants],
+  collections: [Users, Media, Categories, Product, Tags, Tenants, Orders],
   cookiePrefix: "marlboro", // for custom cookies if want unique cookie
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
