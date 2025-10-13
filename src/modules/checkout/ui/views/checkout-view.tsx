@@ -43,8 +43,8 @@ const CheckoutView = ({ tenantSlug }: Props) => {
   );
 
   useEffect(() => {
+    console.log("triggered");
     if (states.success) {
-      setStates({ success: false, cancel: false });
       clearCart();
       // TODO: invalidate library
       router.push("/products");
