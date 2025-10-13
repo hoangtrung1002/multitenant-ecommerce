@@ -7,10 +7,10 @@ import { Progress } from "@/components/ui/progress";
 import { formatCurrency, generateTenantURL } from "@/lib/utils";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { LinkIcon, StarIcon } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import dynamic from "next/dynamic";
 
 const CartButton = dynamic(() => import("../components/cart-button"), {
   ssr: false,
@@ -101,7 +101,11 @@ const ProductView = ({ productId, tenantSlug }: Props) => {
             <div className="border-t lg:border-t-0 lg:border-l h-full">
               <div className="flex flex-col gap-4 p-6 border-b">
                 <div className="flex flex-row items-center gap-2">
-                  <CartButton productId={productId} tenantSlug={tenantSlug} />
+                  <CartButton
+                    productId={productId}
+                    tenantSlug={tenantSlug}
+                    isPurchased={data.isPurchased}
+                  />
                   <Button
                     className="size-12"
                     variant="elevated"
