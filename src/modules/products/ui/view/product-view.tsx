@@ -5,6 +5,7 @@ import StarRating from "@/components/star-rating";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { formatCurrency, generateTenantURL } from "@/lib/utils";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { CheckIcon, LinkIcon, StarIcon } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -99,7 +100,7 @@ const ProductView = ({ productId, tenantSlug }: Props) => {
             </div>
             <div className="p-6">
               {data.description ? (
-                <p>{data.description}</p>
+                <RichText data={data.description} />
               ) : (
                 <p className="font-medium text-muted-foreground italic">
                   No description provided
@@ -174,3 +175,20 @@ const ProductView = ({ productId, tenantSlug }: Props) => {
 };
 
 export default ProductView;
+
+export const ProductViewSkeleton = () => {
+  return (
+    <div className="px-4 py-10 lg:px-12">
+      <div className="overflow-hidden bg-white border rounded-sm">
+        <div className="relative aspect-[3.9] border-b">
+          <Image
+            alt="Placeholder"
+            src="/placeholder.png"
+            className="object-cover"
+            fill
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
