@@ -1,5 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { multiTenantPlugin } from "@payloadcms/plugin-multi-tenant";
@@ -63,6 +64,17 @@ export default buildConfig({
       },
       userHasAccessToAllTenants: (user) => isSuperAdmin(user),
     }),
-    // storage-adapter-placeholder
+    vercelBlobStorage({
+      enabled: true,
+      /* 
+      When deploying to Vercel, server uploads are limited with 4.5MB. Set clientUploads to true
+      to do uploads directly on the client.
+      */
+      // clientUploads: true
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
   ],
 });
