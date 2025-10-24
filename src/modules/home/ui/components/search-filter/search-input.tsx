@@ -1,19 +1,31 @@
-"use client";
 import useTRPCSession from "@/app/hooks/use-trpc-session";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BookmarkCheckIcon, ListFilterIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CategoriesSidebar from "./categories-sidebar";
 
 interface Props {
   disabled?: boolean;
+  defaultValue?: string | undefined;
+  onChange?: (value: string) => void;
 }
 
-const SearchInput = ({ disabled }: Props) => {
+const SearchInput = ({ disabled, onChange, defaultValue }: Props) => {
+  const [debouncedValue, setDebouncedValue] = useState(defaultValue || "");
   const { session } = useTRPCSession();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // debounce
+  useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      onChange?.(debouncedValue);
+    }, 500);
+
+    return () => clearTimeout(timeOutId);
+  }, [debouncedValue, onChange]);
+
   return (
     <div className="flex items-center w-full gap-2">
       <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
@@ -23,6 +35,8 @@ const SearchInput = ({ disabled }: Props) => {
           className="pl-8"
           placeholder="Search products"
           disabled={disabled}
+          value={debouncedValue}
+          onChange={(e) => setDebouncedValue(e.target.value)}
         />
       </div>
       {/* Mobile View */}

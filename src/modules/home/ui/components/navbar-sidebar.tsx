@@ -1,3 +1,5 @@
+"use client";
+import useTRPCSession from "@/app/hooks/use-trpc-session";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sheet,
@@ -20,6 +22,7 @@ interface Props {
 }
 
 const NavbarSidebar = ({ items, onOpenChange, open }: Props) => {
+  const { session } = useTRPCSession();
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="left" className="p-0 transition-none">
@@ -39,18 +42,29 @@ const NavbarSidebar = ({ items, onOpenChange, open }: Props) => {
               </Link>
             ))}
             <div className="border-t">
-              <Link
-                href="/sign-in"
-                className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium "
-              >
-                Log in
-              </Link>
-              <Link
-                href="/sign-up"
-                className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium "
-              >
-                Start selling
-              </Link>
+              {session.data?.user ? (
+                <Link
+                  href="/admin"
+                  className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium "
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/sign-in"
+                    className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium "
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    href="/sign-up"
+                    className="w-full text-left p-4 hover:bg-black hover:text-white flex items-center text-base font-medium "
+                  >
+                    Start selling
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </ScrollArea>

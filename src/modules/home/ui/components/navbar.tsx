@@ -76,7 +76,7 @@ const Navbar = () => {
         onOpenChange={setIsSidebarOpen}
       />
 
-      <div className="items-center gap-4 hidden lg:flex">
+      {/* <div className="items-center gap-4 hidden lg:flex">
         {navbarItems.map((item) => (
           <NavbarItem
             key={item.href}
@@ -86,7 +86,7 @@ const Navbar = () => {
             {item.name}
           </NavbarItem>
         ))}
-      </div>
+      </div> */}
 
       {session.data?.user ? (
         <div className="hidden lg:flex">
